@@ -23,7 +23,7 @@ public class PopUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up);
 
-        eye= findViewById(R.id.imageButton1);
+        eye= findViewById(R.id.imageeyeX);
 
         eye.setOnClickListener(new View.OnClickListener(){
             @Override

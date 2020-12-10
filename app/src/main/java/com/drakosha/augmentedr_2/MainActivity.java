@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     }
 
     public void chooseObject(View view) {
-        startActivity(new Intent("com.drakosha.augmentedr_2.AR_Activity"));
+        startActivity(new Intent("com.drakosha.augmentedr_2.PopUpActivity"));
     }
 
     public void chooseEnvironment(View view) {

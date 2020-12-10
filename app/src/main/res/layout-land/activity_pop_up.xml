@@ -8,7 +8,7 @@
 
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/imageeyeX"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/eye_x"

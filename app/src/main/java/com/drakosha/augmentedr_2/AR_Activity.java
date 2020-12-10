@@ -2,16 +2,27 @@ package com.drakosha.augmentedr_2;
 
 import android.app.Activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.icu.text.IDNA;
 import android.net.Uri;
 import android.os.Bundle;
-
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.ar.core.Anchor;
 import com.google.ar.core.Config;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.HitTestResult;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
@@ -27,12 +38,17 @@ public class AR_Activity extends AppCompatActivity {
     private Button Duck;
     private Button table;
     private Button sofa;
+    private Button info;
+
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    public boolean Info_mode = false;
 
     private enum ObjectType {
         CHAIR,
         DUCK,
         TABLE,
-        SOFA
+        SOFA,
     }
 
     ObjectType objectType = ObjectType.CHAIR;
@@ -46,6 +62,15 @@ public class AR_Activity extends AppCompatActivity {
         fragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         Config.PlaneFindingMode HORIZONTAL_AND_VERTICAL;
 
+        info = findViewById(R.id.info);
+        info.setOnClickListener(view -> {
+            Info_mode=!Info_mode;
+            if (Info_mode==true){
+                Toast.makeText(getApplicationContext(), "INFO_MODE : ON", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getApplicationContext(), "INFO_MODE : OFF", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         chair = findViewById(R.id.chair);
         chair.setOnClickListener(view -> objectType = ObjectType.CHAIR);
@@ -60,7 +85,7 @@ public class AR_Activity extends AppCompatActivity {
         Duck.setOnClickListener(view -> objectType = ObjectType.DUCK);
 
         fragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-
+            if (Info_mode==false){
             switch (objectType) {
                 case CHAIR:
                     createChair(hitResult.createAnchor());
@@ -75,7 +100,7 @@ public class AR_Activity extends AppCompatActivity {
                     createDuck(hitResult.createAnchor());
                 default:
                     break;
-            }
+            }}
         });
     }
 
@@ -114,9 +139,28 @@ public class AR_Activity extends AppCompatActivity {
     private void placeModel(ModelRenderable modelRenderable, Anchor anchor) {
         AnchorNode node = new AnchorNode(anchor);
         TransformableNode transformableNode = new TransformableNode(fragment.getTransformationSystem());
+        transformableNode.setOnTapListener((HitTestResult hitTestResult, MotionEvent Event) ->
+        {
+            if(Info_mode==true){
+                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
+                    popupWindow = new PopupWindow(container, 800, 800, true);
+                    popupWindow.showAtLocation(this.findViewById(R.id.chair), Gravity.CENTER, 0, 0);
+                    // dismiss the popup window when touched
+                    container.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            popupWindow.dismiss();
+                            return true;
+                        }
+                    });
+            }
+        });
         transformableNode.setParent(node);
         transformableNode.setRenderable(modelRenderable);
         fragment.getArSceneView().getScene().addChild(node);
         transformableNode.select();
     }
+
+
 }
