@@ -29,6 +29,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".PopUpActivity">
+            <intent-filter>
+                <action android:name="com.drakosha.augmentedr_2.PopUpActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />

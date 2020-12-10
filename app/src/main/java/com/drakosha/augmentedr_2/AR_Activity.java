@@ -4,18 +4,23 @@ import android.app.Activity;
 
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.ar.core.Anchor;
+import com.google.ar.core.Config;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
+import com.google.ar.core.Plane;
+
 
 public class AR_Activity extends AppCompatActivity {
+
 
     private ArFragment fragment;
     private Button chair;
@@ -37,7 +42,10 @@ public class AR_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
 
+
         fragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
+        Config.PlaneFindingMode HORIZONTAL_AND_VERTICAL;
+
 
         chair = findViewById(R.id.chair);
         chair.setOnClickListener(view -> objectType = ObjectType.CHAIR);
