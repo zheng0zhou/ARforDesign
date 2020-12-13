@@ -32,9 +32,9 @@ public class PopUpActivity extends AppCompatActivity {
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1,null);
 
 
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-                popupWindow = new PopupWindow(container, width, height, true);
+                //int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                //int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                popupWindow = new PopupWindow(container, 800, 800, true);
 
                 popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AugmentedR_2</string>
+    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[>]]></string>
 </resources>
