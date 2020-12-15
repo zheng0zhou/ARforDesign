@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -88,63 +90,94 @@ public class AR_Activity extends AppCompatActivity {
             if (Info_mode==false){
             switch (objectType) {
                 case CHAIR:
-                    createChair(hitResult.createAnchor());
+                    createChair(hitResult.createAnchor(), objectType);
                     break;
                 case TABLE:
-                    createTable(hitResult.createAnchor());
+                    createTable(hitResult.createAnchor(), objectType);
                     break;
                 case SOFA:
-                    createSofa(hitResult.createAnchor());
+                    createSofa(hitResult.createAnchor(), objectType);
                     break;
                 case DUCK:
-                    createDuck(hitResult.createAnchor());
+                    createDuck(hitResult.createAnchor(), objectType);
                 default:
                     break;
             }}
         });
     }
 
-    private void createSofa(Anchor anchor) {
+    private void createSofa(Anchor anchor, ObjectType objectType) {
         ModelRenderable.builder()
                 .setSource(this, Uri.parse("sofa.sfb"))
                 .build()
-                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor));
+                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor,objectType));
 
     }
 
-    private void createTable(Anchor anchor) {
+    private void createTable(Anchor anchor,  ObjectType objectType) {
         ModelRenderable.builder()
                 .setSource(this, Uri.parse("table.sfb"))
                 .build()
-                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor));
+                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
 
     }
 
-    private void createChair(Anchor anchor) {
+    private void createChair(Anchor anchor,  ObjectType objectType) {
         ModelRenderable.builder()
                 .setSource(this,Uri.parse("chair.sfb"))
                 .build()
-                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor));
+                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
 
     }
 
-    private void createDuck(Anchor anchor){
+    private void createDuck(Anchor anchor,  ObjectType objectType){
         ModelRenderable.builder()
                 .setSource(this,Uri.parse("Duck.sfb"))
                 .build()
-                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor));
+                .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
+    }
+
+    public void updateTextView(String toThis, int textview_id) {
+        TextView textView = new TextView(this);
+        textView = findViewById(textview_id);
+        textView.setText(toThis);
     }
 
 
-    private void placeModel(ModelRenderable modelRenderable, Anchor anchor) {
+    private void placeModel(ModelRenderable modelRenderable, Anchor anchor, ObjectType objectType) {
         AnchorNode node = new AnchorNode(anchor);
         TransformableNode transformableNode = new TransformableNode(fragment.getTransformationSystem());
         transformableNode.setOnTapListener((HitTestResult hitTestResult, MotionEvent Event) ->
         {
             if(Info_mode==true){
-                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
-                    popupWindow = new PopupWindow(container, 800, 800, true);
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
+
+                popupWindow = new PopupWindow(container, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                    switch (objectType){
+                        case CHAIR:
+                            updateTextView("CHAIR", R.id.textView1port);
+                            updateTextView("This is a chair!", R.id.textView2port);
+                            break;
+                        case TABLE:
+                            updateTextView("TABLE", R.id.textView1port);
+                            updateTextView("This is a table!", R.id.textView2port);
+                            break;
+                        case SOFA:
+                            updateTextView("SOFA",R.id.textView1port);
+                            updateTextView("This is a sofa!", R.id.textView2port);
+                            break;
+                        case DUCK:
+                            updateTextView("DUCK",R.id.textView1port);
+                            updateTextView("This is a duck!", R.id.textView2port);
+                        default:
+                            break;
+                    }
+
+
+
+
+
                     popupWindow.showAtLocation(this.findViewById(R.id.chair), Gravity.CENTER, 0, 0);
                     // dismiss the popup window when touched
                     container.setOnTouchListener(new View.OnTouchListener() {
