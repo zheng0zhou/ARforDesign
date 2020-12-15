@@ -138,8 +138,7 @@ public class AR_Activity extends AppCompatActivity {
     }
 
     public void updateTextView(String toThis, int textview_id) {
-        TextView textView = new TextView(this);
-        textView = findViewById(textview_id);
+        TextView textView = (TextView) findViewById(textview_id);
         textView.setText(toThis);
     }
 
@@ -150,10 +149,7 @@ public class AR_Activity extends AppCompatActivity {
         transformableNode.setOnTapListener((HitTestResult hitTestResult, MotionEvent Event) ->
         {
             if(Info_mode==true){
-                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
 
-                popupWindow = new PopupWindow(container, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
                     switch (objectType){
                         case CHAIR:
                             updateTextView("CHAIR", R.id.textView1port);
@@ -174,11 +170,11 @@ public class AR_Activity extends AppCompatActivity {
                             break;
                     }
 
+                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
+                    popupWindow = new PopupWindow(container, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+                    popupWindow.showAtLocation(info, Gravity.CENTER, 0, 0);
 
-
-
-
-                    popupWindow.showAtLocation(this.findViewById(R.id.chair), Gravity.CENTER, 0, 0);
                     // dismiss the popup window when touched
                     container.setOnTouchListener(new View.OnTouchListener() {
                         @Override
@@ -189,6 +185,7 @@ public class AR_Activity extends AppCompatActivity {
                     });
             }
         });
+
         transformableNode.setParent(node);
         transformableNode.setRenderable(modelRenderable);
         fragment.getArSceneView().getScene().addChild(node);
