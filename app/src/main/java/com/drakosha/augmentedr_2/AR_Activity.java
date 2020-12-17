@@ -137,8 +137,8 @@ public class AR_Activity extends AppCompatActivity {
                 .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
     }
 
-    public void updateTextView(String toThis, int textview_id) {
-        TextView textView = (TextView) findViewById(textview_id);
+    public void updateTextView(String toThis, int textview_id, View layout) {
+        TextView textView = (TextView) layout.findViewById(textview_id);
         textView.setText(toThis);
     }
 
@@ -150,33 +150,45 @@ public class AR_Activity extends AppCompatActivity {
         {
             if(Info_mode==true){
 
+//                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+//                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
+//                    View layout = layoutInflater.inflate(R.layout.activity_pop_up_window_1, container, false);
+//                    popupWindow = new PopupWindow(container, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+//                    popupWindow.showAtLocation(info, Gravity.CENTER, 0, 0);
+
+                    LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                    View layout = inflater.inflate(R.layout.activity_pop_up_window_1, (ViewGroup) findViewById(R.id.popup_element), false);
+
+                    PopupWindow popupWindow = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
                     switch (objectType){
                         case CHAIR:
-                            updateTextView("CHAIR", R.id.textView1port);
-                            updateTextView("This is a chair!", R.id.textView2port);
+                            updateTextView("CHAIR", R.id.textView1,layout);
+                            updateTextView("This is a chair!", R.id.textView2,layout);
                             break;
                         case TABLE:
-                            updateTextView("TABLE", R.id.textView1port);
-                            updateTextView("This is a table!", R.id.textView2port);
+                            updateTextView("TABLE", R.id.textView1,layout);
+                            updateTextView("This is a table!", R.id.textView2,layout);
                             break;
                         case SOFA:
-                            updateTextView("SOFA",R.id.textView1port);
-                            updateTextView("This is a sofa!", R.id.textView2port);
+                            updateTextView("SOFA",R.id.textView1,layout);
+                            updateTextView("This is a sofa!", R.id.textView2,layout);
                             break;
                         case DUCK:
-                            updateTextView("DUCK",R.id.textView1port);
-                            updateTextView("This is a duck!", R.id.textView2port);
+                            updateTextView("DUCK",R.id.textView1,layout);
+                            updateTextView("This is a duck!", R.id.textView2,layout);
                         default:
                             break;
                     }
 
-                    layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.activity_pop_up_window_1, null);
-                    popupWindow = new PopupWindow(container, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
                     popupWindow.showAtLocation(info, Gravity.CENTER, 0, 0);
 
+
+
+
                     // dismiss the popup window when touched
-                    container.setOnTouchListener(new View.OnTouchListener() {
+                    layout.setOnTouchListener(new View.OnTouchListener() {
                         @Override
                         public boolean onTouch(View v, MotionEvent event) {
                             popupWindow.dismiss();
