@@ -1,10 +1,6 @@
 package com.drakosha.augmentedr_2;
 
-import android.app.Activity;
-
 import android.content.Context;
-import android.content.Intent;
-import android.icu.text.IDNA;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,8 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +23,6 @@ import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
-import com.google.ar.core.Plane;
-
 
 public class AR_Activity extends AppCompatActivity {
 
@@ -38,7 +30,7 @@ public class AR_Activity extends AppCompatActivity {
     private ArFragment fragment;
     private Button chair;
     private Button Duck;
-    private Button table;
+    private Button lamp;
     private Button sofa;
     private Button info;
 
@@ -49,7 +41,7 @@ public class AR_Activity extends AppCompatActivity {
     private enum ObjectType {
         CHAIR,
         DUCK,
-        TABLE,
+        LAMP,
         SOFA,
     }
 
@@ -77,8 +69,8 @@ public class AR_Activity extends AppCompatActivity {
         chair = findViewById(R.id.chair);
         chair.setOnClickListener(view -> objectType = ObjectType.CHAIR);
 
-        table = findViewById(R.id.table);
-        table.setOnClickListener(view -> objectType = ObjectType.TABLE);
+        lamp = findViewById(R.id.lamp);
+        lamp.setOnClickListener(view -> objectType = ObjectType.LAMP);
 
         sofa = findViewById(R.id.sofa);
         sofa.setOnClickListener(view -> objectType = ObjectType.SOFA);
@@ -92,8 +84,8 @@ public class AR_Activity extends AppCompatActivity {
                 case CHAIR:
                     createChair(hitResult.createAnchor(), objectType);
                     break;
-                case TABLE:
-                    createTable(hitResult.createAnchor(), objectType);
+                case LAMP:
+                    createLamp(hitResult.createAnchor(), objectType);
                     break;
                 case SOFA:
                     createSofa(hitResult.createAnchor(), objectType);
@@ -114,9 +106,9 @@ public class AR_Activity extends AppCompatActivity {
 
     }
 
-    private void createTable(Anchor anchor,  ObjectType objectType) {
+    private void createLamp(Anchor anchor,  ObjectType objectType) {
         ModelRenderable.builder()
-                .setSource(this, Uri.parse("table.sfb"))
+                .setSource(this, Uri.parse("lampYZ.sfb"))
                 .build()
                 .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
 
@@ -124,7 +116,7 @@ public class AR_Activity extends AppCompatActivity {
 
     private void createChair(Anchor anchor,  ObjectType objectType) {
         ModelRenderable.builder()
-                .setSource(this,Uri.parse("chair.sfb"))
+                .setSource(this,Uri.parse("chaiseYZ.sfb"))
                 .build()
                 .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
 
@@ -167,9 +159,9 @@ public class AR_Activity extends AppCompatActivity {
                             updateTextView("CHAIR", R.id.textView1,layout);
                             updateTextView("This is a chair!", R.id.textView2,layout);
                             break;
-                        case TABLE:
-                            updateTextView("TABLE", R.id.textView1,layout);
-                            updateTextView("This is a table!", R.id.textView2,layout);
+                        case LAMP:
+                            updateTextView("LAMP", R.id.textView1,layout);
+                            updateTextView("This is a lamp!", R.id.textView2,layout);
                             break;
                         case SOFA:
                             updateTextView("SOFA",R.id.textView1,layout);
@@ -181,11 +173,7 @@ public class AR_Activity extends AppCompatActivity {
                         default:
                             break;
                     }
-
                     popupWindow.showAtLocation(info, Gravity.CENTER, 0, 0);
-
-
-
 
                     // dismiss the popup window when touched
                     layout.setOnTouchListener(new View.OnTouchListener() {

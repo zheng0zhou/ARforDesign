@@ -52,11 +52,11 @@
             android:text="Chair" />
 
         <Button
-            android:id="@+id/table"
+            android:id="@+id/lamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".33"
-            android:text="Table" />
+            android:text="Lamp" />
 
         <Button
             android:id="@+id/sofa"
