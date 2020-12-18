@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.ar.core.Anchor;
@@ -133,7 +133,11 @@ public class AR_Activity extends AppCompatActivity {
         TextView textView = (TextView) layout.findViewById(textview_id);
         textView.setText(toThis);
     }
-
+    public void updateImageView(int Imageview_id, View layout,int srcImage) {
+        ImageView myImgView = (ImageView) layout.findViewById(R.id.imageView);
+        //myImgView.setImageResource(R.drawable.chair);
+        myImgView.setImageResource(srcImage);
+    }
 
     private void placeModel(ModelRenderable modelRenderable, Anchor anchor, ObjectType objectType) {
         AnchorNode node = new AnchorNode(anchor);
@@ -158,14 +162,17 @@ public class AR_Activity extends AppCompatActivity {
                         case CHAIR:
                             updateTextView("CHAIR", R.id.textView1,layout);
                             updateTextView("This is a chair!", R.id.textView2,layout);
+                            updateImageView(R.id.imageView,layout,R.drawable.chair);
                             break;
                         case LAMP:
                             updateTextView("LAMP", R.id.textView1,layout);
                             updateTextView("This is a lamp!", R.id.textView2,layout);
+                            updateImageView(R.id.imageView,layout,R.drawable.lamp);
                             break;
                         case SOFA:
                             updateTextView("SOFA",R.id.textView1,layout);
                             updateTextView("This is a sofa!", R.id.textView2,layout);
+                            updateImageView(R.id.imageView,layout,R.drawable.sofa);
                             break;
                         case DUCK:
                             updateTextView("DUCK",R.id.textView1,layout);
