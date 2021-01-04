@@ -1,0 +1,94 @@
+{
+  materials: [
+    {
+      name: '1_45_x_50_x_77_cm_-_Blanc_Definition1',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.066667000000000004,
+            0.066667000000000004,
+            0.066667000000000004,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: '1_45_x_50_x_77_cm_-_Blanc_Definition2',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.019608,
+            0.019608,
+            0.019608,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+    {
+      name: '1_45_x_50_x_77_cm_-_Blanc_Definition3',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.623529,
+            0.611765,
+            0.60392199999999996,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/chaiseYZ.obj',
+    name: 'chaiseYZ',
+    recenter: 'root',
+    scale: 0.8,
+  },
+  version: '0.54:2',
+}

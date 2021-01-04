@@ -1,0 +1,41 @@
+{
+  materials: [
+    {
+      name: '1_Incandescente_100_W_Definition1',
+      parameters: [
+        {
+          baseColor: null,
+        },
+        {
+          baseColorTint: [
+            0.85490200000000005,
+            0.121569,
+            0.121569,
+            1,
+          ],
+        },
+        {
+          metallic: 0,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/lampYZ.obj',
+    name: 'lampYZ',
+    recenter: 'root',
+  },
+  version: '0.54:2',
+}

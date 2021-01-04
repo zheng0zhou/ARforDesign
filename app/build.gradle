@@ -57,3 +57,11 @@ sceneform.asset('sampledata/sofa.gltf',
         'default',
         'sampledata/sofa.sfa',
         'src/main/assets/sofa')
+sceneform.asset('sampledata/chaiseYZ.obj',
+        'default',
+        'sampledata/chaiseYZ.sfa',
+        'src/main/assets/chaiseYZ')
+sceneform.asset('sampledata/lampYZ.obj',
+        'default',
+        'sampledata/lampYZ.sfa',
+        'src/main/assets/lampYZ')

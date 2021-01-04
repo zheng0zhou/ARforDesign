@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AR_Activity">
+
+    <RelativeLayout
+        android:id="@+id/popup_element"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="#cccccc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="20dp" />
+        <!--            android:text="Titre Object" />-->
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:textSize="8sp" />
+        <!--            android:text="Un objet, du latin objectum, est étymologiquement ce qui est jeté devant nos yeux ou plus généralement notre conscience. Il s'agit donc de tout ce que nous pouvons percevoir, penser ou vouloir. En ce sens, tout ce qui existe peut être dit objet, du moment qu'on y pense, y compris une personne qui est objet d'amour. Un objet est ainsi ce qui est pensé par opposition au sujet qui est ce qui pense. " />-->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="138dp"
+            android:layout_height="206dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/_7588955226_039ef6b871_o" />
+
+        <Button
+            android:id="@+id/buttonright"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="210dp"
+            android:text="@string/right"
+            app:backgroundTint="#00FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonleft"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="210dp"
+            android:text="@string/left"
+            app:backgroundTint="#00FFFFFF" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

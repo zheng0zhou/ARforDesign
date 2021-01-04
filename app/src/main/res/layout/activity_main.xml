@@ -2,57 +2,71 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.google.ar.sceneform.ux.ArFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:orientation="horizontal"
-        android:weightSum="1"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="175dp"
+        android:layout_height="275dp"
+        android:layout_marginTop="136dp"
+        android:src="@drawable/group_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
-        <Button
-            android:id="@+id/duck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".33"
-            android:text="Duck" />
+    <ImageView
+        android:layout_width="66dp"
+        android:layout_height="100dp"
+        android:src="@drawable/quest_mark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_environment"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/button_object"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.182" />
 
-        <Button
-            android:id="@+id/chair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".33"
-            android:text="Chair" />
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="START"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="startAR" />
 
-        <Button
-            android:id="@+id/table"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".33"
-            android:text="Table" />
+    <ImageButton
+        android:id="@+id/button_object"
+        android:layout_width="135dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="35dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="chooseObject"
+        android:scaleType="fitCenter"
+        android:src="@drawable/objectimage"
+        android:text="Object"
 
-        <Button
-            android:id="@+id/sofa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".33"
-            android:text="Sofa" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
 
-    </LinearLayout>
-
+    <ImageButton
+        android:id="@+id/button_environment"
+        android:layout_width="135dp"
+        android:layout_height="70dp"
+        android:src="@drawable/espace"
+        android:backgroundTint="#00FFFFFF"
+        android:layout_marginEnd="35dp"
+        android:onClick="chooseEnvironment"
+        android:text="Environment"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306" />
 </androidx.constraintlayout.widget.ConstraintLayout>
