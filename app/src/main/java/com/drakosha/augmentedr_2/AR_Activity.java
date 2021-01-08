@@ -3,6 +3,7 @@ package com.drakosha.augmentedr_2;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,7 +25,18 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
 
-public class AR_Activity extends AppCompatActivity {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.Reader;
+
+public class AR_Activity<line> extends AppCompatActivity {
 
 
     private ArFragment fragment;
@@ -38,6 +50,9 @@ public class AR_Activity extends AppCompatActivity {
     private LayoutInflater layoutInflater;
     public boolean Info_mode = false;
 
+    public AR_Activity() throws FileNotFoundException {
+    }
+
     private enum ObjectType {
         CHAIR,
         DUCK,
@@ -47,7 +62,7 @@ public class AR_Activity extends AppCompatActivity {
 
     ObjectType objectType = ObjectType.CHAIR;
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ar);
@@ -138,6 +153,39 @@ public class AR_Activity extends AppCompatActivity {
         //myImgView.setImageResource(R.drawable.chair);
         myImgView.setImageResource(srcImage);
     }
+    public String readTxt(ObjectType  objectType){
+        String txt = "";
+        InputStream input=getResources().openRawResource(R.raw.init);
+        switch (objectType){
+            case CHAIR:
+                input=getResources().openRawResource(R.raw.chair);
+                break;
+            case LAMP:
+                input=getResources().openRawResource(R.raw.lamp);
+                break;
+            case SOFA:
+                input=getResources().openRawResource(R.raw.sofa);
+                break;
+            case DUCK:
+                input=getResources().openRawResource(R.raw.duck);
+            default:
+                break;
+        }
+        Reader reader=new InputStreamReader(input);
+        StringBuffer stringBuffer=new StringBuffer();
+        char b[]=new char[1024];
+        int len=-1;
+        try {
+            while ((len = reader.read(b))!= -1){
+                stringBuffer.append(b);
+            }
+        }catch (IOException e){
+            Log.e("ReadingFile","IOException");
+        }
+        String string=stringBuffer.toString();
+
+        return string;
+    }
 
     private void placeModel(ModelRenderable modelRenderable, Anchor anchor, ObjectType objectType) {
         AnchorNode node = new AnchorNode(anchor);
@@ -157,26 +205,26 @@ public class AR_Activity extends AppCompatActivity {
                     View layout = inflater.inflate(R.layout.activity_pop_up_window_1, (ViewGroup) findViewById(R.id.popup_element), false);
 
                     PopupWindow popupWindow = new PopupWindow(layout, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-
+                    String txt="1111";
                     switch (objectType){
                         case CHAIR:
                             updateTextView("CHAIR", R.id.textView1,layout);
-                            updateTextView("This is a chair!", R.id.textView2,layout);
+                            updateTextView(readTxt(objectType), R.id.textView2,layout);
                             updateImageView(R.id.imageView,layout,R.drawable.chair);
                             break;
                         case LAMP:
                             updateTextView("LAMP", R.id.textView1,layout);
-                            updateTextView("This is a lamp!", R.id.textView2,layout);
+                            updateTextView(readTxt(objectType), R.id.textView2,layout);
                             updateImageView(R.id.imageView,layout,R.drawable.lamp);
                             break;
                         case SOFA:
                             updateTextView("SOFA",R.id.textView1,layout);
-                            updateTextView("This is a sofa!", R.id.textView2,layout);
+                            updateTextView(readTxt(objectType), R.id.textView2,layout);
                             updateImageView(R.id.imageView,layout,R.drawable.sofa);
                             break;
                         case DUCK:
                             updateTextView("DUCK",R.id.textView1,layout);
-                            updateTextView("This is a duck!", R.id.textView2,layout);
+                            updateTextView(readTxt(objectType), R.id.textView2,layout);
                         default:
                             break;
                     }
