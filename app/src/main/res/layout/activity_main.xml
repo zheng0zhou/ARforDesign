@@ -17,33 +17,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_button" />
 
-    <ImageView
-        android:layout_width="66dp"
-        android:layout_height="100dp"
+    <ImageButton
+        android:id="@+id/questionmarkbutton"
+        android:layout_width="112dp"
+        android:layout_height="130dp"
+        android:backgroundTint="#000000"
+        android:onClick="displayInformation"
         android:src="@drawable/quest_mark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_environment"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.370"
         app:layout_constraintStart_toEndOf="@id/button_object"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintVertical_bias="0.086" />
 
     <Button
         android:id="@+id/start_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corner"
+        android:onClick="startAR"
         android:text="START"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="startAR" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/button_object"
         android:layout_width="135dp"
         android:layout_height="70dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="40dp"
         android:backgroundTint="#00FFFFFF"
         android:onClick="chooseObject"
         android:scaleType="fitCenter"
@@ -53,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <ImageButton
         android:id="@+id/button_environment"
@@ -69,4 +73,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.306" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

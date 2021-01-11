@@ -26,6 +26,12 @@ public class MainActivity extends Activity {
         startActivity(new Intent("com.drakosha.augmentedr_2.AR_Activity"));
     }
 
+    public void displayInformation(View view) {
+        // Ici il ne reste plus qu'à faire une pop up qui affiche
+        // les informations du mail
+
+    } //
+
     public void chooseObject(View view) {
         startActivity(new Intent("com.drakosha.augmentedr_2.AR_Activity"));
     }
