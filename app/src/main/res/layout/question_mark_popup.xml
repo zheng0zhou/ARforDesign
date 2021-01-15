@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/popup_element2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#cccccc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466">
+
+
+        <!--            android:text="Titre Object" />-->
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:text="Espace > structure, division espace, réseaux \nObjets > mobilier, mobilité, ornementation, corps
+
+" />
+        <!--            android:text="Un objet, du latin objectum, est étymologiquement ce qui est jeté devant nos yeux ou plus généralement notre conscience. Il s'agit donc de tout ce que nous pouvons percevoir, penser ou vouloir. En ce sens, tout ce qui existe peut être dit objet, du moment qu'on y pense, y compris une personne qui est objet d'amour. Un objet est ainsi ce qui est pensé par opposition au sujet qui est ce qui pense. " />-->
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
