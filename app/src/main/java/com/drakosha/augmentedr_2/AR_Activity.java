@@ -25,15 +25,10 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.Reader;
 
 public class AR_Activity<line> extends AppCompatActivity {
@@ -41,7 +36,7 @@ public class AR_Activity<line> extends AppCompatActivity {
 
     private ArFragment fragment;
     private Button chair;
-    private Button Duck;
+    private Button table;
     private Button lamp;
     private Button sofa;
     private Button info;
@@ -55,7 +50,7 @@ public class AR_Activity<line> extends AppCompatActivity {
 
     private enum ObjectType {
         CHAIR,
-        DUCK,
+        TABLE,
         LAMP,
         SOFA,
     }
@@ -90,8 +85,8 @@ public class AR_Activity<line> extends AppCompatActivity {
         sofa = findViewById(R.id.sofa);
         sofa.setOnClickListener(view -> objectType = ObjectType.SOFA);
 
-        Duck = findViewById(R.id.duck);
-        Duck.setOnClickListener(view -> objectType = ObjectType.DUCK);
+        table = findViewById(R.id.table);
+        table.setOnClickListener(view -> objectType = ObjectType.TABLE);
 
         fragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
             if (Info_mode==false){
@@ -105,7 +100,7 @@ public class AR_Activity<line> extends AppCompatActivity {
                 case SOFA:
                     createSofa(hitResult.createAnchor(), objectType);
                     break;
-                case DUCK:
+                case TABLE:
                     createDuck(hitResult.createAnchor(), objectType);
                 default:
                     break;
@@ -139,7 +134,7 @@ public class AR_Activity<line> extends AppCompatActivity {
 
     private void createDuck(Anchor anchor,  ObjectType objectType){
         ModelRenderable.builder()
-                .setSource(this,Uri.parse("Duck.sfb"))
+                .setSource(this,Uri.parse("table.sfb"))
                 .build()
                 .thenAccept(modelRenderable -> placeModel(modelRenderable,anchor, objectType));
     }
@@ -166,8 +161,8 @@ public class AR_Activity<line> extends AppCompatActivity {
             case SOFA:
                 input=getResources().openRawResource(R.raw.sofa);
                 break;
-            case DUCK:
-                input=getResources().openRawResource(R.raw.duck);
+            case TABLE:
+                input=getResources().openRawResource(R.raw.table);
             default:
                 break;
         }
@@ -222,8 +217,8 @@ public class AR_Activity<line> extends AppCompatActivity {
                             updateTextView(readTxt(objectType), R.id.textView2,layout);
                             updateImageView(R.id.imageView,layout,R.drawable.sofa);
                             break;
-                        case DUCK:
-                            updateTextView("DUCK",R.id.textView1,layout);
+                        case TABLE:
+                            updateTextView("Table",R.id.textView1,layout);
                             updateTextView(readTxt(objectType), R.id.textView2,layout);
                         default:
                             break;

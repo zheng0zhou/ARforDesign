@@ -38,12 +38,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/duck"
+            android:id="@+id/table"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight=".33"
             android:backgroundTint="#FFFFFF"
-            android:text="Duck" />
+            android:text="Table" />
 
         <Button
             android:id="@+id/chair"
