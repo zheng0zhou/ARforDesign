@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
@@ -44,8 +45,14 @@ public class MainActivity extends Activity {
         layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.question_mark_popup,null);
 
-        popupWindow = new PopupWindow(container,ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY,100,1300);
+//        popupWindow = new PopupWindow(container,ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+//        popupWindow.showAtLocation(view, Gravity.NO_GRAVITY,100,1300);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        popupWindow = new PopupWindow(container, width, height, true);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         container.setOnTouchListener(new View.OnTouchListener(){
             @Override
