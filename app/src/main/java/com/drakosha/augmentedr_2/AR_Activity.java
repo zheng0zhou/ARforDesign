@@ -220,6 +220,7 @@ public class AR_Activity<line> extends AppCompatActivity {
                         case TABLE:
                             updateTextView("Table",R.id.textView1,layout);
                             updateTextView(readTxt(objectType), R.id.textView2,layout);
+                            updateImageView(R.id.imageView,layout,R.drawable.table);
                         default:
                             break;
                     }
